@@ -35,7 +35,4 @@ deduplicated_dataframe=deduplicated_dataframe.rename(columns={'epoch':'time'})
 deduplicated_dataframe
 
 
-            click.echo(f"Error inserting data from {file}: {str(e)}", err=True)
-
-if __name__ == '__main__':
-    insert_data()
+            
