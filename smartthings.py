@@ -34,27 +34,7 @@ deduplicated_dataframe
 deduplicated_dataframe=deduplicated_dataframe.rename(columns={'epoch':'time'})
 deduplicated_dataframe
 
-@click.command()
-@click.option('-d', '--dburl', required=True, help='Insert into the project database (DBURL is a SQLAlchemy database URL)')
-@click.argument('files', nargs=-1, type=click.Path(exists=True))
-def insert_data(dburl, files):
-    """Insert data from SmartThings files into the database."""
-    db = HomeMessagesDB(dburl)
-    for file in files:
-        try:
-            # Read data from file
-            combined_dataframe = read_tsv_files(file)
 
-            # Remove duplicates
-            deduplicated_dataframe = remove_duplicates(combined_dataframe)
-
-            # Rename columns
-            deduplicated_dataframe = deduplicated_dataframe.rename(columns={'epoch': 'time'})
-
-            # Insert data into the database
-            db.insert_data(deduplicated_dataframe)
-            click.echo(f"Data from {file} inserted into the database.")
-        except Exception as e:
             click.echo(f"Error inserting data from {file}: {str(e)}", err=True)
 
 if __name__ == '__main__':
