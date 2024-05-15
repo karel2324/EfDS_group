@@ -1,7 +1,6 @@
 import pandas as pd
 import datetime as dt
 import glob
-import click
 from home_messages_db import HomeMessagesDB
 
 
